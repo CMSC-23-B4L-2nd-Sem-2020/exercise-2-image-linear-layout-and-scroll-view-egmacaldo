@@ -9,24 +9,26 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity() {
 
     lateinit var disneyImage : ImageView
-    lateinit var disneyText : TextView
+    lateinit var detailsText : TextView
+    lateinit var headerText : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        disneyImage = findViewById(R.id.disneyImage)
-        disneyText = findViewById(R.id.disneyText)
+        disneyImage = findViewById(R.id.disney_image)
+        detailsText = findViewById(R.id.disney_details)
+        headerText = findViewById(R.id.header_text)
 
         // Get the Button view from the layout and assign a click
         // listener to it.
         val startButton: Button = findViewById(R.id.start_button)
-        startButton.setOnClickListener { randomDisney() }
+        startButton.setOnClickListener { startDisney() }
 
-        val resetButton: Button = findViewById(R.id.reset_button)
-        resetButton.setOnClickListener { resetDisney() }
+        val resetButton: Button = findViewById(R.id.retry_button)
+        resetButton.setOnClickListener { retryDisney() }
     }
 
-    private fun randomDisney() {
+    private fun startDisney() {
         // Toast.makeText(this, "button clicked",
         //  Toast.LENGTH_SHORT).show()
         val randomInt = (1..10).random()
@@ -58,13 +60,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         disneyImage.setImageResource(drawableResource)
-        disneyText.text = getString(stringResource)
-
+        detailsText.text = getString(stringResource)
+        headerText.text = getString(R.string.header_text2)
     }
 
-    private fun resetDisney(){
+    private fun retryDisney(){
         disneyImage.setImageResource(R.drawable.disney)
-        disneyText.text = getString(R.string.disney)
+        detailsText.text = getString(R.string.disney)
+        headerText.text = getString(R.string.header_text)
     }
 
 }
